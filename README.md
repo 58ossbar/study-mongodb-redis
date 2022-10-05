@@ -104,5 +104,31 @@ windows10以上操作系统，在开始---右键-----windows终端（管理员�
 启动/停止mongodb：
 net start/stop mongodb
 
+## 客户端工具推荐
+
+MongoDB客户端工具推荐：
+
+### 1、NoSQL Manager for MongoDB Freeware
+
+https://www.mongodbmanager.com/download
+![image](https://user-images.githubusercontent.com/110378589/194070651-0eb146ab-9932-44e6-808b-40517f095bd3.png)
+
+
+### 2、Navicat Premium全能数据库工具（强烈推荐）
+
+Navicat Premium 是一套数据库开发工具，让你从单一应用程序中同时连接 MySQL、MariaDB、MongoDB、SQL Server、Oracle、PostgreSQL 和 SQLite 数据库。它与 Amazon RDS、Amazon Aurora、Amazon Redshift、Microsoft Azure、Oracle Cloud、MongoDB Atlas、阿里云、腾讯云和华为云等云数据库兼容。你可以快速轻松地创建、管理和维护数据库。
+
+默认情况下Navicat 不显示mongodb默认三个数据库，需要显示隐藏的项目
+![image](https://user-images.githubusercontent.com/110378589/194070888-f5197a6f-0841-41ec-8a7e-0fad9fa40e0e.png)
+
+![image](https://user-images.githubusercontent.com/110378589/194070792-26c9c4bd-3400-4eca-b5db-34704c972f3f.png)
+
+
+### 3、Robo 3T
+
+https://robomongo.org/download
+
+
+
 
 
