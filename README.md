@@ -1,5 +1,6 @@
 # study-mongodb
-mongodb入门到实战
+
+mongodb入门到实战: 结合实践案例，以任务为驱动，对Mongodb技术进行梳理，让开发者快速掌握Mongodb数据库。
 
 # Mongodb是什么
 　MongoDB并非芒果的意思，而是源于 Humongous（巨大）一词。中文叫盲狗db
