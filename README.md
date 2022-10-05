@@ -128,7 +128,4 @@ Navicat Premium 是一套数据库开发工具，让你从单一应用程序中�
 
 https://robomongo.org/download
 
-
-
-
-
+更详细的教材及素材详见：https://www.ossbar.com/#/productDetail?proData=%7B%22productId%22%3A315,%22skuId%22%3A972,%22shopId%22%3A138%7D
