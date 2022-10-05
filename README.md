@@ -11,7 +11,7 @@ Mongodb主要由文档（Document）、集合（Collection）、数据库（Data
 
 一个MongoDB实例，由多个数据库（Database）组成；一个数据库，由多个集合（Collection）组成；一个集合，又由多个文档组成。注意Mongodb单个文档大小上限为16MB，确保不会使用过多的内存RAM或在传输过程中占用过多的带宽。为了存储更大的文档，Mongodb提供了GridFS。
 
-![image](https://user-images.githubusercontent.com/110378589/194082022-c9f5aab7-343f-4ef4-a46e-a7b1e95782f3.png)
+![image](https://user-images.githubusercontent.com/110378589/194084936-8c184d1b-ace9-4e09-a6a6-30d69bd02f44.png)
 
 ## 程序员注重对象，您的数据库也是。
 
