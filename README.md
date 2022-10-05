@@ -63,7 +63,46 @@ MongoDB与SQL的结构对比详解
 
 ![开源吧](https://www.budaos.com/bds//uploads/cbeditor-image/2021-09-02/db4220a58b1648648daca3eea4d9a70b.png)
 
+# MongoDB的安装和配置
 
+## 安装前的准备
+
+### 1.芒果数据库官网地址：https://www.mongodb.com/
+备用下载链接：http://dl.mongodb.org/dl/win32/x86_64
+### 2.选择合适的Mongodb社区版或企业版
+下载可以选择 zip 格式或者 msi 格式，msi 格式就是下一步、下一步安装。我们讲解 zip格式。
+### 3.解压缩这个文件夹，建议不要有中文路径
+
+## 安装说明
+
+### 1. 文件配置
+
+进入解压后的文件夹，新建data和log文件夹，并在log文件夹下，新建mongod.log空文件
+
+新建mongod.conf文件与bin文件夹同级
+
+mongod.conf写入以下内容
+![image](https://user-images.githubusercontent.com/110378589/194069719-e2f369a5-f2c7-4c27-b922-9ba7e2cdfd37.png)
+
+注：dbpath和logpath根据自己的具体路径进行修改
+
+### 2. 安装
+
+特点注意：不同的操作系统
+
+从bin文件夹下进入命令行执行,如果是windows7操作系统，不需要 加./
+
+./mongod --config D:\mongodb-win32-x86_64-windows-5.0.11\mongod.conf--install --serviceName  mongodb
+
+注：在cmd操作下执行一定要以管理员身份运行，否则可能造成安装失败
+
+windows10以上操作系统，在开始---右键-----windows终端（管理员）运行，或开始---运行--cmd （ctrl+shift+Enter）调出
+
+正常情况下执行后窗口没有任何反应，其实是正常在生成data下默认的几个数据库文件，可以查看是否已经在data目录下生成初始化文件。
+
+### 3. 查看服务及启动服务 
+启动/停止mongodb：
+net start/stop mongodb
 
 
 
