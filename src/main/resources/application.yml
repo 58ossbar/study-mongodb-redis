@@ -1,0 +1,34 @@
+#服务配置
+server:
+  port: 8080
+#   #设置日志相关打印sql 语句
+logging:
+  level:
+    com.cbitedu: debug
+    org.springframework.web: debug
+#关闭运行日志图标（banner）
+spring:
+  data:
+    mongodb:
+      host: 127.0.0.1
+      port: 27017
+      database: goodsdb
+      username: creatorblue
+      password: "123456"
+    #Thymeleaf模板引擎相关配置
+  thymeleaf:
+      #prefix：指定模板所在的目录
+      prefix: classpath:/templates/
+      #check-tempate-location: 检查模板路径是否存在
+      check-template-location: true
+      #cache: 是否缓存，开发模式下设置为false，避免改了模板还要重启服务器，线上设置为true，可以提高性能。
+      cache: false
+      #suffix 配置模板后缀名
+      suffix: .html
+      encoding: UTF-8
+      mode: HTML5
+  devtools:
+      restart:
+        enabled: true  #设置开启热部署
+        additional-paths: src/main/java #重启目录
+        # exclude: static/**,public/**,db/**,i18n/**,templates/**  #排除文件(不重启项目)
