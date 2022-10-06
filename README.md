@@ -1,6 +1,6 @@
 # study-mongodb
 
-Mongodb数据库入门到实战: 结合实践案例，以任务为驱动，对Mongodb技术进行梳理，让开发者快速掌握Mongodb数据库。
+Mongodb入门到实战: 结合实践案例，以任务为驱动，对Mongodb技术进行梳理，让开发者快速掌握Mongodb数据库。
 
 # MongoDB是什么
 　MongoDB并非芒果的意思，而是源于 Humongous（巨大）一词。中文叫盲狗db
@@ -73,20 +73,18 @@ MongoDB的应用已经渗透到各个领域，比如游戏、物流、电商、�
 
 ## 安装前的准备
 
-### 1.芒果数据库官网地址：https://www.mongodb.com/
-备用下载链接：http://dl.mongodb.org/dl/win32/x86_64
-### 2.选择合适的Mongodb社区版或企业版
-下载可以选择 zip 格式或者 msi 格式，msi 格式就是下一步、下一步安装。我们讲解 zip格式。
-### 3.解压缩这个文件夹，建议不要有中文路径
+### 1.芒果数据库官网下载地址：https://www.mongodb.com/try/download/community
+### 2.选择合适的Mongodb社区版
+下载可以选择 zip 格式或者 msi 格式，msi 格式就是向导式安装，比较简单。我们重点讲解 zip压缩包格式的安装过程。
+### 3.解压下载的mongodb数据库压缩包，建议解压目录不要有中文路径
 
 ## 安装说明
 
 ### 1. 文件配置
 
-进入解压后的文件夹，新建data和log文件夹，并在log文件夹下，新建mongod.log空文件
+进入解压后的mongodb数据库文件夹，新建data和log文件夹，并在log文件夹下，新建mongod.log空文件
 
 新建mongod.conf文件与bin文件夹同级
-
 mongod.conf写入以下内容
 ![image](https://user-images.githubusercontent.com/110378589/194069719-e2f369a5-f2c7-4c27-b922-9ba7e2cdfd37.png)
 
@@ -112,10 +110,8 @@ net start/stop mongodb
 MongoDB客户端工具推荐：
 
 ### 1、NoSQL Manager for MongoDB Freeware
-
 https://www.mongodbmanager.com/download
 ![image](https://user-images.githubusercontent.com/110378589/194070651-0eb146ab-9932-44e6-808b-40517f095bd3.png)
-
 
 ### 2、Navicat Premium全能数据库工具（强烈推荐）
 
@@ -125,7 +121,6 @@ Navicat Premium 是一套数据库开发工具，让你从单一应用程序中�
 ![image](https://user-images.githubusercontent.com/110378589/194070888-f5197a6f-0841-41ec-8a7e-0fad9fa40e0e.png)
 
 ![image](https://user-images.githubusercontent.com/110378589/194070792-26c9c4bd-3400-4eca-b5db-34704c972f3f.png)
-
 
 ### 3、Robo 3T
 
