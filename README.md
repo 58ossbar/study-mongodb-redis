@@ -1,6 +1,5 @@
-# study-mongodb
-
-Mongodb数据库入门到实战: 结合实践案例，以任务为驱动，对Mongodb技术进行梳理，让开发者快速掌握Mongodb数据库。
+# study-nosql
+Mongodb、Redis数据库入门到实战: 结合实践案例，以任务为驱动，对Mongodb、Redis数据库技术进行梳理，让开发者快速掌握Mongodb和Redis数据库。
 
 # MongoDB是什么
 　MongoDB并非芒果的意思，而是源于 Humongous（巨大）一词。中文叫盲狗db
