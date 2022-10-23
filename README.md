@@ -220,3 +220,183 @@ redis-server --service-stop
 下载地址：https://github.com/qishibo/AnotherRedisDesktopManager
 
 或国内：https://gitee.com/qishibo/AnotherRedisDesktopManager/releases/v1.5.0
+
+# Redis数据类型及应用场景
+## Redis 数据类型
+
+Redis支持五种数据类型：string（字符串），hash（哈希），list（列表），set（集合）及zset(sorted set：有序集合)。
+
+### String（字符串）
+
+字符串类型是 Redis 中最基本的数据类型，一个 key 对应一个 value。可以存储二进制数据、图片和 Json 的对象。
+
+string 类型是二进制安全的。意思是 redis 的 string 可以包含任何数据。比如jpg图片或者序列化的对象。
+
+string 类型的值最大能存储 512MB。
+
+常用命令：get、set、incr、decr、mget等。
+
+Redis还提供了下面一些操作： 
+
+获取字符串长度
+往字符串append内容
+设置和获取字符串的某一段内容
+设置及获取字符串的某一位（bit）
+批量设置一系列字符串的内容
+
+### Hash（哈希）
+
+Redis hash 是一个键值(key=>value)对集合。
+
+Redis hash 是一个 string 类型的 field 和 value 的映射表，hash 特别适合用于存储对象。
+
+常用命令：hget,hset,hgetall 等。
+
+比如我们要存储一个用户信息对象数据，包含以下信息：
+
+用户ID为查找的key，存储的value用户对象包含姓名，年龄，生日等信息，如果用普通的key/value结构来存储，主要有以下2种存储方式：
+
+方法一：将用户ID作为查找key,把其他信息封装成一个对象以序列化的方式存储，这种方式的缺点是，增加了序列化/反序列化的开销，并且在需要修改其中一项信息时，需要把整个对象取回，并且修改操作需要对并发进行保护，引入CAS等复杂问题。
+
+方法二：是这个用户信息对象有多少成员就存成多少个key-value对儿，用用户ID+对应属性的名称作为唯一标识来取得对应属性的值，虽然省去了序列化开销和并发问题，但是用户ID为重复存储，如果存在大量这样的数据，内存浪费还是非常可观的。那么Redis提供的Hash很好的解决了这个问题，Redis的Hash实际是内部存储的Value为一个HashMap，并提供了直接存取这个Map成员的接口，如下图：
+
+也就是说，Key仍然是用户ID, value是一个Map，这个Map的key是成员的属性名，value是属性值，这样对数据的修改和存取都可以直接通过其内部Map的Key(Redis里称内部Map的key为field), 也就是通过 key(用户ID) + field(属性标签) 就可以操作对应属性数据了，既不需要重复存储数据，也不会带来序列化和并发修改控制的问题，很好的解决了问题。
+
+### List（列表）
+
+Redis 列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素到列表的头部（左边）或者尾部（右边）。
+
+### Set（集合）
+
+Redis 的 Set 是 string 类型的无序集合。
+
+集合是通过哈希表实现的，所以添加，删除，查找的复杂度都是 O(1)。
+
+sadd 命令
+
+添加一个 string 元素到 key 对应的 set 集合中，成功返回 1，如果元素已经在集合中返回 0。
+
+注意：以上实例中 rabbitmq 添加了两次，但根据集合内元素的唯一性，第二次插入的元素将被忽略。
+
+集合中最大的成员数为 232 - 1(4294967295, 每个集合可存储40多亿个成员)。
+
+### zset(sorted set：有序集合)
+
+Redis zset 和 set 一样也是string类型元素的集合,且不允许重复的成员。
+
+不同的是每个元素都会关联一个double类型的分数。redis正是通过分数来为集合中的成员进行从小到大的排序。
+
+zset的成员是唯一的,但分数(score)却可以重复。
+
+## Redis基本操作
+
+### 库与key的操作命令
+key操作命令
+
+获得符合规则的键名列表
+
+KEYS pattern
+
+pattern 支持 glob 风格通配符：
+
+set 设置key的值语法
+set key value
+# 示例 127.0.0.1:6379> set name zhangsan
+ OK 
+127.0.0.1:6379> set age 25
+OK
+get 获取key的值
+get key
+# 示例 127.0.0.1:6379> get name "zhangsan"
+del 删除key
+del key
+# 示例 127.0.0.1:6379> del name (integer) 1
+exists 判断key是否存在
+exists key
+# 判断key是否存在，存在返回1，不存在返回0 
+# 示例 127.0.0.1:6379> exists name (integer) 1
+ 127.0.0.1:6379> exists title
+ (integer) 0
+type 获取key类型
+type key
+# 获取key存储的值的类型 
+# 示例 127.0.0.1:6379> type name string 
+127.0.0.1:6379> type age string
+expire 设置key有效期
+expire key
+# 设置key的生命周期 # expire key 表示以秒为单位设置声明周期 
+# 示例 127.0.0.1:6379[1]> expire login 60 
+(integer) 1 
+127.0.0.1:6379[1]> ttl login
+ (integer) 47
+tll 查看key有效期
+ttl key
+# 查询key的生命周期 # 大于0 ：生命周期单位为秒， # 等于-1：永久有效 # 等于-2：该key不存在 # pttl key表示秒为单位 
+# 示例 127.0.0.1:6379> ttl name
+ (integer) -1 
+127.0.0.1:6379> ttl title
+ (integer) -2
+rename 重命名key
+rename key newkey
+# 重命名key，如果newkey已经存在，修改后则替换新key的值 
+# 示例 127.0.0.1:6379> set title "redis test" 
+OK 
+127.0.0.1:6379> exists title
+(integer) 1 
+127.0.0.1:6379> rename title biaoti 
+OK 
+127.0.0.1:6379> get biaoti
+ "redis test"
+renamenx 重命名不存在的key
+renamenx key newkey
+# 重命名key，如果newkey已经存在则不修改。 # nx表示not exists 
+# 示例 127.0.0.1:6379> keys * 
+1) "biaoti" 
+2) "age" 
+3) "name" 
+127.0.0.1:6379> renamenx biaoti name
+ (integer) 0
+persist 设置key永久有效
+persist key
+# 设置key永久有效 
+# 示例 127.0.0.1:6379> set login on
+ OK 127.0.0.1:6379> expire login 60 
+(integer) 1 
+127.0.0.1:6379> ttl login
+ (integer) 55 
+127.0.0.1:6379> persist login 
+(integer) 1 
+127.0.0.1:6379> ttl login
+ (integer) -1
+move 把key移动到其他库
+move key db
+# 把key移动到另一个数据库，db为整数 # 示例
+库操作命令
+dbsize 查看当前有多少个key
+dbsize
+# 查看当前有多少个key 
+# 示例 127.0.0.1:6379> dbsize 12
+select 选择库
+select db
+# 选择使用哪个数据库，db为整数 # 默认有16个数据库0~15，如果想修改数据库数量，修改redis.conf配置文件的databases值 
+# 示例 127.0.0.1:6379> select 1 
+OK 
+127.0.0.1:6379[2]> select 15 
+OK
+flushdb 删除选中数据库中的key
+flushdb
+# 删除当前选择数据库中的所有key 
+# 示例 127.0.0.1:6379[1]> keys * 
+1) "biaoti" 
+127.0.0.1:6379[1]> flushdb 
+OK 
+127.0.0.1:6379[1]> keys *
+ (empty list or set)
+flushall 删除所有库的key
+flushall
+# 删除所有数据库中的key 
+# 示例 127.0.0.1:6379[1]> flushall 
+OK 127.0.0.1:6379[1]> select 0 
+OK 
+127.0.0.1:6379> keys * 
+(empty list or set)
