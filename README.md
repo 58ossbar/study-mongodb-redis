@@ -132,3 +132,70 @@ https://robomongo.org/download
 
 # 教材及素材获取
 https://www.ossbar.com/#/productDetail?proData=%7B%22productId%22%3A315,%22skuId%22%3A972,%22shopId%22%3A138%7D
+
+# redis简介
+ ## Redis（Remote Dictionary Server:远程字典服务）
+  ●    是完全开源并免费的，遵守BSD协议，是一个高性能的key-value数据库中
+  ●    Redis 与其他key-value 缓存产品有以下三个特点
+  ●    Redis支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。
+  ●    Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。
+  ●    Redis支持数据的备份，即master-slave模式的数据备份
+# Redis 优势
+  ●    性能极高 – Redis能读的速度是110000次/s,写的速度是81000次/s 。
+  ●    丰富的数据类型 – Redis支持二进制案例的 Strings, Lists, Hashes, Sets 及 Ordered Sets 数据类型操作。
+  ●    原子 – Redis的所有操作都是原子性的，意思就是要么成功执行要么失败完全不执行。单个操作是原子性的。多个操作也支持事务，即原子性，通过MULTI和EXEC指令包起来。
+  ●    丰富的特性 – Redis还支持 publish/subscribe, 通知, key 过期等等特性。
+
+MySQL是关系型数据库，是持久化存储的，查询检索的话，会涉及到磁盘IO操作，为了提高性能，可以使用缓存技术，而memcached就是内存数据库，数据存储在内存中（当然也可以进行持久化存储），可以用作缓存数据库。用户首先去memcached查询数据，如果未查询到（即缓存未命中），才去MySQL中查询数据，查询到的数据会更新到缓存数据库中，提供给下次可能进行的查询。提高了数据查询方面的性能。   
+Redis和memcached都是缓存数据库，可以大大提升高数据量的web访问速度。但是memcached只是提供了简单的数据结构string，而Redis的value可以是string、list、set、hash、sorted set这些，功能更加强大。   web应用中一般采用MySQL+Redis的方式，web应用每次先访问Redis，如果没有找到数据，才去访问MySQL。   
+Redis是内存数据库，数据保存在内存中，访问速度快。MySQL是关系型数据库，功能强大，存储在磁盘中，数据访问速度慢。像memcached，MongoDB，Redis等，都属于No sql系列。
+
+# Redis安装和配置
+## 下载安装
+    1. 官网：https://redis.io
+    2. 中文网：http://www.redis.net.cn/
+    3. 解压直接可以使用：
+        * redis.windows.conf：配置文件
+        * redis-cli.exe：redis的客户端
+        * redis-server.exe：redis服务器端
+### Windows下安装Redis步骤
+
+1、下载和解压Redis-x64-3.2.100
+
+ Github下载地址：https://github.com/MicrosoftArchive/redis/releases
+
+2、打开cmd指令窗口，输入你刚才解压的文件路径，然后输入以下命令
+
+redis-server redis.windows.conf
+
+3、安装Windows服务
+
+redis-server --service-install redis.windows.conf
+
+4、启动redis服务
+
+#Redis常用的指令
+#卸载服务：
+./redis-server --service-uninstall
+#开启服务：
+./redis-server --service-start
+或net start  redis
+#停止服务：
+./redis-server --service-stop
+或net stop redis
+
+## 客户端工具推荐
+
+1、Redis Desktop Manager
+
+是一款跨平台开源 Redis ® 管理工具，RDM 是易于使用的 GUI 工具，可用于 Windows，Linux，MacOS 和 iPadOS
+
+，支持命令控制台操作，以及常用，查询key，rename，delete等操作。
+
+下载地址：http://down.123520.net/dir/195471-41859118-4ed9f5
+
+2、AnotherRedisDesktopManager
+
+下载地址：https://github.com/qishibo/AnotherRedisDesktopManager
+
+或国内：https://gitee.com/qishibo/AnotherRedisDesktopManager/releases/v1.5.0
