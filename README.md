@@ -290,7 +290,7 @@ zset的成员是唯一的,但分数(score)却可以重复。
 
 ## Redis基本操作
 
-### 库与key的操作命令
+## 库与key的操作命令
 key操作命令
 
 获得符合规则的键名列表
@@ -301,45 +301,45 @@ pattern 支持 glob 风格通配符：
 
 set 设置key的值语法
 set key value
-# 示例 127.0.0.1:6379> set name zhangsan
+### 示例 127.0.0.1:6379> set name zhangsan
  OK 
 127.0.0.1:6379> set age 25
 OK
 get 获取key的值
 get key
-# 示例 127.0.0.1:6379> get name "zhangsan"
+### 示例 127.0.0.1:6379> get name "zhangsan"
 del 删除key
 del key
-# 示例 127.0.0.1:6379> del name (integer) 1
+### 示例 127.0.0.1:6379> del name (integer) 1
 exists 判断key是否存在
 exists key
-# 判断key是否存在，存在返回1，不存在返回0 
-# 示例 127.0.0.1:6379> exists name (integer) 1
+### 判断key是否存在，存在返回1，不存在返回0 
+### 示例 127.0.0.1:6379> exists name (integer) 1
  127.0.0.1:6379> exists title
  (integer) 0
 type 获取key类型
 type key
-# 获取key存储的值的类型 
-# 示例 127.0.0.1:6379> type name string 
+### 获取key存储的值的类型 
+### 示例 127.0.0.1:6379> type name string 
 127.0.0.1:6379> type age string
 expire 设置key有效期
 expire key
-# 设置key的生命周期 # expire key 表示以秒为单位设置声明周期 
-# 示例 127.0.0.1:6379[1]> expire login 60 
+### 设置key的生命周期 # expire key 表示以秒为单位设置声明周期 
+### 示例 127.0.0.1:6379[1]> expire login 60 
 (integer) 1 
 127.0.0.1:6379[1]> ttl login
  (integer) 47
 tll 查看key有效期
 ttl key
-# 查询key的生命周期 # 大于0 ：生命周期单位为秒， # 等于-1：永久有效 # 等于-2：该key不存在 # pttl key表示秒为单位 
-# 示例 127.0.0.1:6379> ttl name
+### 查询key的生命周期 # 大于0 ：生命周期单位为秒， # 等于-1：永久有效 # 等于-2：该key不存在 # pttl key表示秒为单位 
+### 示例 127.0.0.1:6379> ttl name
  (integer) -1 
 127.0.0.1:6379> ttl title
  (integer) -2
 rename 重命名key
 rename key newkey
-# 重命名key，如果newkey已经存在，修改后则替换新key的值 
-# 示例 127.0.0.1:6379> set title "redis test" 
+### 重命名key，如果newkey已经存在，修改后则替换新key的值 
+### 示例 127.0.0.1:6379> set title "redis test" 
 OK 
 127.0.0.1:6379> exists title
 (integer) 1 
@@ -349,8 +349,8 @@ OK
  "redis test"
 renamenx 重命名不存在的key
 renamenx key newkey
-# 重命名key，如果newkey已经存在则不修改。 # nx表示not exists 
-# 示例 127.0.0.1:6379> keys * 
+### 重命名key，如果newkey已经存在则不修改。 # nx表示not exists 
+### 示例 127.0.0.1:6379> keys * 
 1) "biaoti" 
 2) "age" 
 3) "name" 
@@ -358,8 +358,8 @@ renamenx key newkey
  (integer) 0
 persist 设置key永久有效
 persist key
-# 设置key永久有效 
-# 示例 127.0.0.1:6379> set login on
+### 设置key永久有效 
+### 示例 127.0.0.1:6379> set login on
  OK 127.0.0.1:6379> expire login 60 
 (integer) 1 
 127.0.0.1:6379> ttl login
@@ -370,23 +370,23 @@ persist key
  (integer) -1
 move 把key移动到其他库
 move key db
-# 把key移动到另一个数据库，db为整数 # 示例
+### 把key移动到另一个数据库，db为整数 # 示例
 库操作命令
 dbsize 查看当前有多少个key
 dbsize
-# 查看当前有多少个key 
-# 示例 127.0.0.1:6379> dbsize 12
+### 查看当前有多少个key 
+### 示例 127.0.0.1:6379> dbsize 12
 select 选择库
 select db
-# 选择使用哪个数据库，db为整数 # 默认有16个数据库0~15，如果想修改数据库数量，修改redis.conf配置文件的databases值 
-# 示例 127.0.0.1:6379> select 1 
+### 选择使用哪个数据库，db为整数 # 默认有16个数据库0~15，如果想修改数据库数量，修改redis.conf配置文件的databases值 
+### 示例 127.0.0.1:6379> select 1 
 OK 
 127.0.0.1:6379[2]> select 15 
 OK
 flushdb 删除选中数据库中的key
 flushdb
-# 删除当前选择数据库中的所有key 
-# 示例 127.0.0.1:6379[1]> keys * 
+### 删除当前选择数据库中的所有key 
+### 示例 127.0.0.1:6379[1]> keys * 
 1) "biaoti" 
 127.0.0.1:6379[1]> flushdb 
 OK 
@@ -394,8 +394,8 @@ OK
  (empty list or set)
 flushall 删除所有库的key
 flushall
-# 删除所有数据库中的key 
-# 示例 127.0.0.1:6379[1]> flushall 
+### 删除所有数据库中的key 
+### 示例 127.0.0.1:6379[1]> flushall 
 OK 127.0.0.1:6379[1]> select 0 
 OK 
 127.0.0.1:6379> keys * 
