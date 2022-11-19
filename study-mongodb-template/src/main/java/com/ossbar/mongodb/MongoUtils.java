@@ -1,4 +1,4 @@
-package com.creatorblue.mongodb;
+package com.ossbar.mongodb;
 
 import java.io.IOException;
 import java.io.InputStream;

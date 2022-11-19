@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.Block;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.junit.Test;
 
-import com.creatorblue.mongodb.MongoUtils;
+import com.ossbar.mongodb.MongoUtils;
+import com.mongodb.BasicDBObject;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
@@ -19,7 +18,7 @@ import com.mongodb.client.MongoIterable;
 import com.mongodb.client.model.Filters;
 
 /**
- * 
+ *
  * @author zhujw
  *
  */
@@ -87,7 +86,7 @@ public class TestMongo {
 		for (Document document : documents) {
 			System.out.println(document);
 		}
-		
+
 	}
 
 	/*
@@ -176,7 +175,7 @@ public class TestMongo {
 		MongoCollection<Document> emp = mongoDatabase.getCollection("emp");
 		//FindIterable<Document> documents=emp.find(Filters.where("this.sal<1000||this.sal>2500"));
 		//FindIterable<Document> documents=emp.find(Filters.eq("sal", 800));
-		List list = new ArrayList();
+		final List list = new ArrayList();
 		list.add(new Document("sal",800));
 		list.add(new Document("sal",2000));
 		FindIterable<Document> documents = emp.find(new Document("$or", list));

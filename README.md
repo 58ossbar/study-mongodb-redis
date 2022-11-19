@@ -1024,42 +1024,34 @@ https://www.ossbar.com/#/productDetail?proData=%7B%22productId%22%3A315,%22skuId
 # redis简介
  ## Redis（Remote Dictionary Server:远程字典服务）
  
-  ●    是完全开源并免费的，遵守BSD协议，是一个高性能的key-value数据库中
-  
-  ●    Redis 与其他key-value 缓存产品有以下三个特点
-  
-  ●    Redis支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。
-  
-  ●    Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。
-  
-  ●    Redis支持数据的备份，即master-slave模式的数据备份
+* 是完全开源并免费的，遵守BSD协议，是一个高性能的key-value数据库中
+
+* Redis 与其他key-value 缓存产品有以下三个特点
+* Redis支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。
+* Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。
+* Redis支持数据的备份，即master-slave模式的数据备份
   
 # Redis 优势
-  ●    性能极高 – Redis能读的速度是110000次/s,写的速度是81000次/s 。
-  
-  ●    丰富的数据类型 – Redis支持二进制案例的 Strings, Lists, Hashes, Sets 及 Ordered Sets 数据类型操作。
-  
-  ●    原子 – Redis的所有操作都是原子性的，意思就是要么成功执行要么失败完全不执行。单个操作是原子性的。多个操作也支持事务，即原子性，通过MULTI和EXEC指令包起来。
-  
-  ●    丰富的特性 – Redis还支持 publish/subscribe, 通知, key 过期等等特性。
- 
-Redis是内存数据库，数据保存在内存中，访问速度快。MySQL是关系型数据库，功能强大，存储在磁盘中，数据访问速度慢。像memcached，MongoDB，Redis等，都属于No sql系列。
-
+*  性能极高 – Redis能读的速度是110000次/s,写的速度是81000次/s 。
+* 丰富的数据类型 – Redis支持二进制案例的 Strings, Lists, Hashes, Sets 及 Ordered Sets 数据类型操作。 
+* 原子 – Redis的所有操作都是原子性的，意思就是要么成功执行要么失败完全不执行。单个操作是原子性的。多个操作也支持事务，即原子性，通过MULTI和EXEC指令包起来。 
+* 丰富的特性 – Redis还支持 publish/subscribe, 通知, key 过期等等特性。
+* Redis是内存数据库，数据保存在内存中，访问速度快。MySQL是关系型数据库，功能强大，存储在磁盘中，数据访问速度慢。像memcached，MongoDB，Redis等，都属于No sql系列。
 # Redis安装和配置
 
 ## 下载安装
 
-    1. 官网：https://redis.io
+1. 官网：https://redis.io
     
-    2. 中文网：http://www.redis.net.cn/
+2. 中文网：http://www.redis.net.cn/
     
-    3. 解压直接可以使用：
+3. 解压直接可以使用：
     
-        * redis.windows.conf：配置文件
+* redis.windows.conf：配置文件
         
-        * redis-cli.exe：redis的客户端
+* redis-cli.exe：redis的客户端
         
-        * redis-server.exe：redis服务器端
+* redis-server.exe：redis服务器端
         
 ### Windows下安装Redis步骤
 
@@ -1116,80 +1108,50 @@ Redis支持五种数据类型：string（字符串），hash（哈希），list�
 
 ### String（字符串）
 
-字符串类型是 Redis 中最基本的数据类型，一个 key 对应一个 value。可以存储二进制数据、图片和 Json 的对象。
+* 字符串类型是 Redis 中最基本的数据类型，一个 key 对应一个 value。可以存储二进制数据、图片和 Json 的对象。
+* string 类型是二进制安全的。意思是 redis 的 string 可以包含任何数据。比如jpg图片或者序列化的对象。
+* string 类型的值最大能存储 512MB。
+* 常用命令：get、set、incr、decr、mget等。
 
-string 类型是二进制安全的。意思是 redis 的 string 可以包含任何数据。比如jpg图片或者序列化的对象。
-
-string 类型的值最大能存储 512MB。
-
-常用命令：get、set、incr、decr、mget等。
-
-Redis还提供了下面一些操作： 
-
-获取字符串长度
-往字符串append内容
-设置和获取字符串的某一段内容
-设置及获取字符串的某一位（bit）
-批量设置一系列字符串的内容
 
 ### Hash（哈希）
 
-Redis hash 是一个键值(key=>value)对集合。
-
-Redis hash 是一个 string 类型的 field 和 value 的映射表，hash 特别适合用于存储对象。
-
-常用命令：hget,hset,hgetall 等。
-
-比如我们要存储一个用户信息对象数据，包含以下信息：
-
-用户ID为查找的key，存储的value用户对象包含姓名，年龄，生日等信息，如果用普通的key/value结构来存储，主要有以下2种存储方式：
-
-方法一：将用户ID作为查找key,把其他信息封装成一个对象以序列化的方式存储，这种方式的缺点是，增加了序列化/反序列化的开销，并且在需要修改其中一项信息时，需要把整个对象取回，并且修改操作需要对并发进行保护，引入CAS等复杂问题。
-
-方法二：是这个用户信息对象有多少成员就存成多少个key-value对儿，用用户ID+对应属性的名称作为唯一标识来取得对应属性的值，虽然省去了序列化开销和并发问题，但是用户ID为重复存储，如果存在大量这样的数据，内存浪费还是非常可观的。那么Redis提供的Hash很好的解决了这个问题，Redis的Hash实际是内部存储的Value为一个HashMap，并提供了直接存取这个Map成员的接口，如下图：
-
-也就是说，Key仍然是用户ID, value是一个Map，这个Map的key是成员的属性名，value是属性值，这样对数据的修改和存取都可以直接通过其内部Map的Key(Redis里称内部Map的key为field), 也就是通过 key(用户ID) + field(属性标签) 就可以操作对应属性数据了，既不需要重复存储数据，也不会带来序列化和并发修改控制的问题，很好的解决了问题。
-
+* Redis hash 是一个键值(key=>value)对集合。
+* Redis hash 是一个 string 类型的 field 和 value 的映射表，hash 特别适合用于存储对象。
+* 常用命令：hget,hset,hgetall 等。
+* 比如我们要存储一个用户信息对象数据，包含以下信息：
+* 用户ID为查找的key，存储的value用户对象包含姓名，年龄，生日等信息，如果用普通的key/value结构来存储，主要有以下2种存储方式：
+* 方法一：将用户ID作为查找key,把其他信息封装成一个对象以序列化的方式存储，这种方式的缺点是，增加了序列化/反序列化的开销，并且在需要修改其中一项信息时，需要把整个对象取回，并且修改操作需要对并发进行保护，引入CAS等复杂问题。
+* 方法二：是这个用户信息对象有多少成员就存成多少个key-value对儿，用用户ID+对应属性的名称作为唯一标识来取得对应属性的值，虽然省去了序列化开销和并发问题，但是用户ID为重复存储，如果存在大量这样的数据，内存浪费还是非常可观的。那么Redis提供的Hash很好的解决了这个问题，Redis的Hash实际是内部存储的Value为一个HashMap，并提供了直接存取这个Map成员的接口，如下图：
+* 也就是说，Key仍然是用户ID, value是一个Map，这个Map的key是成员的属性名，value是属性值，这样对数据的修改和存取都可以直接通过其内部Map的Key(Redis里称内部Map的key为field), 也就是通过 key(用户ID) + field(属性标签) 就可以操作对应属性数据了，既不需要重复存储数据，也不会带来序列化和并发修改控制的问题，很好的解决了问题。
 ### List（列表）
 
 Redis 列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素到列表的头部（左边）或者尾部（右边）。
 
 ### Set（集合）
 
-Redis 的 Set 是 string 类型的无序集合。
-
-集合是通过哈希表实现的，所以添加，删除，查找的复杂度都是 O(1)。
-
-sadd 命令
-
-添加一个 string 元素到 key 对应的 set 集合中，成功返回 1，如果元素已经在集合中返回 0。
-
-注意：以上实例中 rabbitmq 添加了两次，但根据集合内元素的唯一性，第二次插入的元素将被忽略。
-
-集合中最大的成员数为 232 - 1(4294967295, 每个集合可存储40多亿个成员)。
+* Redis 的 Set 是 string 类型的无序集合。
+* 集合是通过哈希表实现的，所以添加，删除，查找的复杂度都是 O(1)。
+* sadd 命令
+* 添加一个 string 元素到 key 对应的 set 集合中，成功返回 1，如果元素已经在集合中返回 0。
+* 注意：以上实例中 rabbitmq 添加了两次，但根据集合内元素的唯一性，第二次插入的元素将被忽略。
+* 集合中最大的成员数为 2^32- 1(4294967295, 每个集合可存储40多亿个成员)。
 
 ### zset(sorted set：有序集合)
 
-Redis zset 和 set 一样也是string类型元素的集合,且不允许重复的成员。
-
-不同的是每个元素都会关联一个double类型的分数。redis正是通过分数来为集合中的成员进行从小到大的排序。
-
-zset的成员是唯一的,但分数(score)却可以重复。
+* Redis zset 和 set 一样也是string类型元素的集合,且不允许重复的成员。
+* 不同的是每个元素都会关联一个double类型的分数。redis正是通过分数来为集合中的成员进行从小到大的排序。
+* zset的成员是唯一的,但分数(score)却可以重复。
 
 ## Redis基本操作
 
 ## 库与key的操作命令
-key操作命令
-
-获得符合规则的键名列表
-
-KEYS pattern
-
-pattern 支持 glob 风格通配符：
-
-
-set 设置key的值语法
-set key value
+* key操作命令
+* 获得符合规则的键名列表
+* KEYS pattern
+* pattern 支持 glob 风格通配符：
+* set 设置key的值语法
+* set key value
 ### 示例 
 
 ```

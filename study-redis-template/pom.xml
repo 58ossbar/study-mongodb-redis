@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ossbar</groupId>
-	<artifactId>study-mongodb-template</artifactId>
+	<artifactId>study-redis-template</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<dependencies>
@@ -15,11 +15,21 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.mongodb/mongodb-driver -->
 		<dependency>
-			<groupId>org.mongodb</groupId>
-			<artifactId>mongodb-driver</artifactId>
-			<version>3.12.11</version>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-pool2</artifactId>
+			<version>2.11.1</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest</artifactId>
+			<version>2.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>4.3.1</version>
+		</dependency>
 	</dependencies>
 
 </project>
