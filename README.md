@@ -1,5 +1,6 @@
 # study-nosql
-Mongodb、Redis数据库入门到实战: 结合实践案例，以任务为驱动，对Mongodb、Redis数据库技术进行梳理，让开发者快速掌握Mongodb和Redis数据库。
+MongoDB,Redis 是NO-SQL的杰出代表。是大数据，人工智能、分布式应用、高速缓存应用场景必备技能。
+本教程结合实践案例，以任务为驱动，对Mongodb、Redis数据库技术进行知识梳理，让开发者快速掌握Mongodb和Redis数据库。
 
 # MongoDB是什么
 　MongoDB并非芒果的意思，而是源于 Humongous（巨大）一词。中文叫盲狗db
@@ -18,19 +19,19 @@ MongoDB 是一个文档数据库，即在类似 JSON 的文档内存储数据。
 
 ## 丰富的 JSON 文档
 
- ●  自然、高效的数据处理方法。
+● 自然、高效的数据处理方法。
 
- ●  支持将数组和嵌套对象存储为值。
+● 支持将数组和嵌套对象存储为值。
 
- ●  支持灵活、动态结构。
+● 支持灵活、动态结构。
 
 ## 强大的查询语言
 
- ●  查询语言丰富和直观，支持通过任何字段进行筛选和排序，而不受其在文档内的嵌套方式影响。
+● 查询语言丰富和直观，支持通过任何字段进行筛选和排序，而不受其在文档内的嵌套方式影响。
 
- ●  支持聚合和其他现代使用案例，如基于地理的搜索、图搜索和文本搜索。
+● 支持聚合和其他现代使用案例，如基于地理的搜索、图搜索和文本搜索。
 
- ●  查询本身是 JSON 格式，因此很容易进行组合。无需串联字符串即可动态生成 SQL 查询。
+● 查询本身是 JSON 格式，因此很容易进行组合。无需串联字符串即可动态生成 SQL 查询。
 
 ## MongoDB特性
 
@@ -42,29 +43,29 @@ MongoDB 是一个文档数据库，即在类似 JSON 的文档内存储数据。
 
 但是其也有些许的缺点，例如：
 
-　 ●  多表关联： 仅仅支持Left Outer Join
+　● 多表关联： 仅仅支持Left Outer Join
 
-　 ●  SQL 语句支持： 查询为主，部分支持
+　● SQL 语句支持： 查询为主，部分支持
 
-　 ●  多表原子事务： 不支持
+　● 多表原子事务： 不支持
 
-　 ●  多文档原子事务：不支持
+　● 多文档原子事务：不支持
 
-　 ●  16MB 文档大小限制，不支持中文排序 ，服务端 Javascript 性能欠佳
+　● 16MB 文档大小限制，不支持中文排序 ，服务端 Javascript 性能欠佳
  
 ## MongoDB适用场景
 
 MongoDB的应用已经渗透到各个领域，比如游戏、物流、电商、内容管理、社交、物联网、视频直播等，以下是几个实际的应用案例：
 
-    ●    游戏场景：使用MongoDB存储游戏用户信息，用户的装备、积分等直接以内嵌文档的形式存储，方便查询、更新。
+● 游戏场景：使用MongoDB存储游戏用户信息，用户的装备、积分等直接以内嵌文档的形式存储，方便查询、更新。
 
-    ●    物流场景：使用MongoDB存储订单信息，订单状态在运送过程中会不断更新，以MongoDB内嵌数组的形式来存储，一次查询就能将订单所有的变更读取出来。
+● 物流场景：使用MongoDB存储订单信息，订单状态在运送过程中会不断更新，以MongoDB内嵌数组的形式来存储，一次查询就能将订单所有的变更读取出来。
 
-    ●    社交场景：使用MongoDB存储用户信息，以及用户发表的朋友圈信息，通过地理位置索引实现附近的人、地点等功能。
+● 社交场景：使用MongoDB存储用户信息，以及用户发表的朋友圈信息，通过地理位置索引实现附近的人、地点等功能。
 
-    ●    物联网场景：使用MongoDB存储所有接入的智能设备信息，以及设备汇报的日志信息，并对这些信息进行多维度的分析。
+● 物联网场景：使用MongoDB存储所有接入的智能设备信息，以及设备汇报的日志信息，并对这些信息进行多维度的分析。
 
-    ●    视频直播：使用MongoDB存储用户信息、礼物信息等。
+● 视频直播：使用MongoDB存储用户信息、礼物信息等。
 
 ![image](https://user-images.githubusercontent.com/110378589/194083181-4772c80d-7117-4e45-b698-4c5f738e0d01.png)
 
@@ -73,7 +74,7 @@ MongoDB的应用已经渗透到各个领域，比如游戏、物流、电商、�
 ## 安装前的准备
 
 ### 1.芒果数据库官网地址：https://www.mongodb.com/
-备用下载链接：http://dl.mongodb.org/dl/win32/x86_64
+备用下载链接：https://www.mongodb.com/try/download/community
 ### 2.选择合适的Mongodb社区版或企业版
 下载可以选择 zip 格式或者 msi 格式，msi 格式就是下一步、下一步安装。我们讲解 zip格式。
 ### 3.解压缩这个文件夹，建议不要有中文路径
@@ -87,6 +88,7 @@ MongoDB的应用已经渗透到各个领域，比如游戏、物流、电商、�
 新建mongod.conf文件与bin文件夹同级
 
 mongod.conf写入以下内容
+
 ![image](https://user-images.githubusercontent.com/110378589/194069719-e2f369a5-f2c7-4c27-b922-9ba7e2cdfd37.png)
 
 注：dbpath和logpath根据自己的具体路径进行修改
@@ -102,7 +104,7 @@ mongod --config D:\mongodb-win32-x86_64-windows-5.0.11\mongod.conf--install --se
 
 正常情况下执行后窗口没有任何反应，其实是正常在生成data下默认的几个数据库文件，可以查看是否已经在data目录下生成初始化文件。
 
-### 3. 查看服务及启动服务 
+### 3. 查看服务及启动服务
 启动/停止mongodb：
 net start/stop mongodb
 
@@ -136,7 +138,7 @@ https://robomongo.org/download
 
 首先我们要先了解一下MongoDB中有什么样的数据类型:
 
-Object  ID ：Documents 自生成的 _id
+Object ID ：Documents 自生成的 _id
 
 这是MongoDB生成的类似关系型DB表主键的唯一key，具体由24个字节组成：
 
@@ -166,35 +168,34 @@ Object  ID ：Documents 自生成的 _id
 
 #注意:这个类型是不可以被JSON序列化的
 
-  ● String： 字符串，必须是utf-8
+● String： 字符串，必须是utf-8
 
-  ● Boolean：布尔值
+● Boolean：布尔值
 
 true 或者false 这里首字母是小写的
-  
-  ● Integer：整数
+
+● Integer：整数
 
 Int32 Int64 你们就知道有个Int就行了,一般我们用Int32
 
-  ● Double：浮点数
+● Double：浮点数
 
  没有float类型,所有小数都是Double
 
-  ● Arrays：数组或者列表
+● Arrays：数组或者列表
 
  多个值存储到一个键:这个数据类型就是字典
 
-  ● Null：空数据类型 , 一个特殊的概念,None Null
+● Null：空数据类型 , 一个特殊的概念,None Null
 
-  ● Timestamp：时间戳
+● Timestamp：时间戳
 
-  ● Date：存储当前日期或时间unix时间格式
+● Date：存储当前日期或时间unix时间格式
 
 我们一般不用这个Date类型,时间戳可以秒杀一切时间类型
 
 ### 数据类型转换
 1、int转换为string类型
-
 ```
 String();
 
@@ -207,7 +208,6 @@ db.emp.find({sal:{$lt:String(2000)}});
 
 2、string转换为Date类型
 
-
 ```
 ISODate()、
 
@@ -217,8 +217,7 @@ db.collectionName.save(x);
 });
 ```
 
- 3、string转换为int类型
-
+3、string转换为int类型
 
 ```
 常用有：Number(),NumberInt,NumberLong,NumberDEcimal
@@ -229,8 +228,6 @@ db.collections.find().forEach( function (x) {
   db.collections.save(x);
 });
 ```
-
-
 4、Mongodb库中已存在的数据的类型转换
 
 ```
@@ -246,7 +243,7 @@ db.emp.updateMany({
 ```
 ### 　数据库操作
 
-MongoDB 中默认的数据库为 test，如果没有创建新的数据库，集合将存放在 test 数据库中。
+MongoDB中默认的数据库为 test，如果没有创建新的数据库，集合将存放在 test 数据库中。
 
 #### 【查看数据库】
 
@@ -258,7 +255,7 @@ show databases;
 
 #### 【创建/切换】
 
- 使用use命令来切换/创建数据库，会发现创建的数据库并不在数据库的列表中， 要显示它，需要向数据库插入一些数据
+使用use命令来切换/创建数据库，会发现创建的数据库并不在数据库的列表中， 要显示它，需要向数据库插入一些数据
 
 use db_name
 
@@ -328,9 +325,9 @@ db.COLLECTION_NAME.insert(document)
 ```
 
 
-save()：如果 _id 主键存在则更新数据，如果不存在就插入数据。该方法新版本中已废弃，可以使用 db.collection.insertOne() 或 db.collection.replaceOne() 来代替。
+save()：如果 _id 主键存在则更新数据，如果不存在就插入数据。该方法新版本中已废弃，可以使用db.collection.insertOne()或db.collection.replaceOne()来代替。
 
-insert(): 若插入的数据主键已经存在，则会抛 org.springframework.dao.DuplicateKeyException 异常，提示主键重复，不保存当前数据。
+insert(): 若插入的数据主键已经存在，则会抛org.springframework.dao.DuplicateKeyException异常，提示主键重复，不保存当前数据。
 
 在插入的文档中，如果不指定_id参数，那么 MongoDB 会为此文档分配一个唯一的ObjectId。_id为集合中的每个文档唯一的12个字节的十六进制数
 
@@ -347,7 +344,7 @@ db.course.insert({
 
 向课程表里插入一条数据
 
-一次性插入多条数据db.collection.insertMany() 
+一次性插入多条数据db.collection.insertMany()
 
 
 ```
@@ -381,12 +378,9 @@ db.student.insert([
     }
 ])
 ```
-
-
 就像JSON一样。一次封装多个数据我们就用数组包裹起来就可以了，我们直接在学生表里面关联课程的信息，course就是我们学生所选的课程。
 
 同样我们也可以定义一个变量
-
 
 ```
 document1=( {
@@ -420,7 +414,6 @@ document1=( {
 
 还有一种插入的方法：
 
-
 ```
 db.student.save(
     {
@@ -437,8 +430,6 @@ db.student.save(
     }
 )
 ```
-
-
 save也可以插入数据，save操作和insert操作的区别在于，save在遇到_id相同的插入数据时候，会覆盖原来的，而insert会提示错误。
 
 shell的for循环批量插入文档:一次插入多条数据
@@ -571,34 +562,30 @@ db.student.update(
 
 db.collection.updateMany(query, update)；
 
-$set : 用来指定一个键的值
+$set:用来指定一个键的值
 
-$unset : 删除指定一个属性
+$unset :删除指定一个属性
 
 $inc : 增加和减少(increase)
 
-$push : 向数组尾部追加元素
+$push:向数组尾部追加元素
 
-$addToSet : 添加时避免重复,  例如:
+$addToSet:添加时避免重复,例如:
 
 db.user.update({"_id": ObjectId("....")}, {$addToSet: {"emails": "sky3hao@163.com"}})
 
-$addToSet 和 $each 组合起来,可以添加多个不同的值.
+$addToSet和$each组合起来,可以添加多个不同的值.
 
-$pop : 从数组某一端删除元素
+$pop:从数组某一端删除元素
 
-$pull : 基于条件来删除数组元素
-
+$pull:基于条件来删除数组元素
 
 ```
 test.update({'name':'foobar'},{$set:{'age':36}}) <==> update test set age=36 where name='foobar'
 
 db.test.update({'name':'foobar'},{$inc:{'age':3}}) <==> update test set age=age+3 where name='foobar'
 ```
-
-
 and条件，挨着写默认就是and
-
 
 ```
 db.student.update(
@@ -611,10 +598,7 @@ db.student.update(
     }
 )
 ```
-
-
 or条件，要出现$or的关键字
-
 
 ```
 db.student.update(
@@ -639,7 +623,6 @@ db.student.update(
 );
 ```
 
-
 大于一个数据或小于一个数
 
 ```
@@ -652,7 +635,6 @@ db.student.update(
     }
 );
 ```
-
 
 布尔运算符
 
@@ -676,7 +658,6 @@ $exists
  db.student.remove({
    条件 
 }，属性)
-
 
 ```
 db.student.remove(
@@ -720,10 +701,9 @@ db.student.drop();
 
 #### 查询文档
 
-
 掌握选择器（selector）
 
- MongoDB的查询选择器就像SQL代码中的where语句。因此您可以用它在集合中查找，统计，更新或是删除文档。选择器就是一个JSON对象，最简单的形式就是{}，用来匹配所有的文档(null也可以）。如果我们需要找到所有雌性的独角兽(unicorn)，我们可以用选择器{gender:'f'}来匹配。
+MongoDB的查询选择器就像SQL代码中的where语句。因此您可以用它在集合中查找，统计，更新或是删除文档。选择器就是一个JSON对象，最简单的形式就是{}，用来匹配所有的文档(null也可以）。如果我们需要找到所有雌性的独角兽(unicorn)，我们可以用选择器{gender:'f'}来匹配。
 
 要从MongoDB集合查询数据，需要使用MongoDB的find()方法，默认返回结果中的前20条文档，输入"it"显示接下来的20条文档。
 
@@ -1311,4 +1291,3 @@ OK
 127.0.0.1:6379> keys * 
 (empty list or set)
 ```
-
